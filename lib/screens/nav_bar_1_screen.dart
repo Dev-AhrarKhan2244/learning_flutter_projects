@@ -1,16 +1,51 @@
 import 'package:bmi/screens/Charts/Char_A.dart';
 import 'package:flutter/material.dart';
+import 'Charts/Chart_B.dart';
+import 'Charts/Chart_C.dart';
 
-class TaskOne extends StatelessWidget {
+// ignore: must_be_immutable
+class FindNav extends StatefulWidget {
   final bool isDark;
-  const TaskOne({super.key, required this.isDark});
+  FindNav({super.key, required this.isDark});
 
   @override
+  State<FindNav> createState() => _FindNav();
+}
+
+class _FindNav extends State<FindNav> {
+  int Currentindex = 0;
+  @override
   Widget build(BuildContext context) {
+    var charts = [
+      CaloriesChart(isDark: widget.isDark),
+      WeightChart(isDark: widget.isDark),
+      ComboChart(isDark: widget.isDark),
+    ];
+
+    var chartsname = [
+      'Food Journal: Nutrition Review',
+      'Body Matrics:Weight , BMI , Fat',
+      'Heart Health & Stress',
+    ];
+
+    void NextChart() {
+      setState(() {
+        Currentindex = (Currentindex + 1) % charts.length;
+      });
+    }
+
+    void PreviousChart() {
+      setState(() {
+        print(Currentindex);
+        Currentindex = (Currentindex - 1 + charts.length) % charts.length;
+      });
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -19,56 +54,62 @@ class TaskOne extends StatelessWidget {
                   child: Text(
                     '<',
                     style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black,
+                      color: widget.isDark ? Colors.white : Colors.black,
                       fontSize: 20,
                     ),
                   ),
                 ),
                 Text(
                   '5 Mar - 13 Mar, 2025',
-                  style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                  style: TextStyle(
+                    color: widget.isDark ? Colors.white : Colors.black,
+                  ),
                 ),
                 TextButton(
                   onPressed: () {},
                   child: Text(
                     '>',
                     style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black,
+                      color: widget.isDark ? Colors.white : Colors.black,
                       fontSize: 20,
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-
-            CaloriesChart(isDark: isDark),
-
             SizedBox(height: 20),
+
+            charts[Currentindex],
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    PreviousChart();
+                  },
                   child: Text(
                     '<',
                     style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black,
+                      color: widget.isDark ? Colors.white : Colors.black,
                       fontSize: 20,
                     ),
                   ),
                 ),
                 Text(
-                  'Food Journal: Nutrition Review',
-                  style: TextStyle(color: isDark ? Colors.white : Colors.black),
+                  chartsname[Currentindex],
+                  style: TextStyle(
+                    color: widget.isDark ? Colors.white : Colors.black,
+                  ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    NextChart();
+                  },
                   child: Text(
                     '>',
                     style: TextStyle(
-                      color: isDark ? Colors.white : Colors.black,
+                      color: widget.isDark ? Colors.white : Colors.black,
                       fontSize: 20,
                     ),
                   ),

@@ -20,13 +20,13 @@ class _CaloriesChartState extends State<CaloriesChart> {
   @override
   Widget build(BuildContext context) {
     final List<CalorieData> data = [
-      CalorieData("S", 2400, true),
-      CalorieData("M", 2500, true),
-      CalorieData("T", 2550, true),
-      CalorieData("W", 2450, true),
-      CalorieData("T", 2600, true),
-      CalorieData("F", 2800, false),
-      CalorieData("S", 2500, true),
+      CalorieData("Sat", 2400, true),
+      CalorieData("Mon", 2500, true),
+      CalorieData("Tue", 2550, true),
+      CalorieData("Wed", 2450, true),
+      CalorieData("Thu", 2600, true),
+      CalorieData("Fri", 2800, false),
+      CalorieData("Sun", 2500, true),
     ];
 
     return Column(
@@ -46,40 +46,20 @@ class _CaloriesChartState extends State<CaloriesChart> {
         ),
         SfCartesianChart(
           plotAreaBorderWidth: 0,
+
           primaryXAxis: CategoryAxis(
-            majorGridLines: const MajorGridLines(width: 0),
-            axisLine: const AxisLine(width: 0),
+            majorGridLines: MajorGridLines(width: 0),
+            axisLine: AxisLine(width: 0),
             labelStyle: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 12,
             ),
           ),
+
           primaryYAxis: NumericAxis(
-            minimum: 0,
+            minimum: 2000,
             maximum: 3000,
             isVisible: false,
-            plotBands: [
-              PlotBand(
-                start: 2650,
-                end: 2650,
-                borderWidth: 1,
-                borderColor: Colors.grey,
-                text: 'Target Calories       2650 Kcal',
-                textStyle: const TextStyle(fontSize: 12),
-                horizontalTextAlignment: TextAnchor.end,
-                verticalTextAlignment: TextAnchor.start,
-              ),
-              PlotBand(
-                start: 2458,
-                end: 2458,
-                borderWidth: 1,
-                borderColor: Colors.grey,
-                text: 'Avg Daily Calories  2458 Kcal',
-                textStyle: const TextStyle(fontSize: 12),
-                horizontalTextAlignment: TextAnchor.end,
-                verticalTextAlignment: TextAnchor.start,
-              ),
-            ],
           ),
           series: [
             ColumnSeries<CalorieData, String>(
@@ -95,12 +75,12 @@ class _CaloriesChartState extends State<CaloriesChart> {
             return CartesianChartAnnotation(
               widget: Icon(
                 d.withinTarget ? Icons.check : Icons.close,
-                color: Colors.white,
-                size: 16,
+                color: widget.isDark ? Colors.white : Colors.black,
+                size: 20,
               ),
               coordinateUnit: CoordinateUnit.point,
               x: d.day,
-              y: d.calories.toDouble() + 100,
+              y: d.calories.toDouble() + 70,
             );
           }).toList(),
         ),

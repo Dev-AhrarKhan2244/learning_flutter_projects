@@ -2,17 +2,16 @@ import 'package:bmi/screens/nav_bar_1_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'nav_bar_2_sceen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'nav_bar_3_screen.dart';
 
-class Find extends StatefulWidget {
-  const Find({super.key});
+class NavBars extends StatefulWidget {
+  const NavBars({super.key});
   @override
-  State<Find> createState() => _FindState();
+  State<NavBars> createState() => _NavBars();
 }
 
-class _FindState extends State<Find> {
+// ignore: unused_element
+class _NavBars extends State<NavBars> {
   bool isDark = false;
   late PersistentTabController _controller;
   final DarkKey = 'spKey';
@@ -38,9 +37,9 @@ class _FindState extends State<Find> {
 
   List<Widget> _buildScreens() {
     return [
-      TaskThree(isDark: isDark),
-      TaskTwo(isDark: isDark),
-      TaskOne(isDark: isDark),
+      Center(child: Text('Stats Page')),
+      Center(child: Text('Tools Page')),
+      FindNav(isDark: isDark),
       Center(child: Text("Network Page")),
       Center(child: Text("... Page")),
     ];

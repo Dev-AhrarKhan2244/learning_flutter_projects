@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/find_screen.dart';
+import 'screens/Nav_Bars.dart';
 
 void main() {
-  runApp(Find());
+  runApp(NavBars());
 }
