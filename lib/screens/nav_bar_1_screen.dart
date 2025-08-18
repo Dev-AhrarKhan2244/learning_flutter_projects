@@ -6,7 +6,7 @@ import 'Charts/Chart_C.dart';
 // ignore: must_be_immutable
 class FindNav extends StatefulWidget {
   final bool isDark;
-  FindNav({super.key, required this.isDark});
+  const FindNav({super.key, required this.isDark});
 
   @override
   State<FindNav> createState() => _FindNav();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ComboChart extends StatefulWidget {
-  ComboChart({super.key, required this.isDark});
+  const ComboChart({super.key, required this.isDark});
   final bool isDark;
   @override
   State<ComboChart> createState() => _ComboChartState();
